@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class PaymentService {
     private final List<Payment> payments = new LinkedList<>();
-    private int balance;
+    private int balance = 1000;
 
     public void makePayment(Payment payment) throws NotEnoughMoneyException{
         if (balance< payment.getAmount()){
