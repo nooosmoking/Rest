@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <style>
+        body {
+            margin: 10px;
+        }
+        .custom-button {
+            font-size: 18px;
+            color: white;
+            background-color: black;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome, <span th:text="${username}"></span>!</h1>
+<h2>Your login number is
+<span th:text="${count}"></span></h2>
+<button class="custom-button" onclick="window.location.href='/home?Logout'">Log out</button>
+</body>
+</html>

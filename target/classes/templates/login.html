@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 10px;
+        }
+        .custom-button {
+            font-size: 18px;
+            color: white;
+            background-color: black;
+            padding: 10px 20px;
+        }
+        input{
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        label {
+            font-size: 15px;
+        }
+    </style>
+</head>
+    <body>
+        <h1>Please log in</h1>
+        <form action="/login" method="POST">
+            <div>
+                Username: <input type="text" name="username" value="" />
+            </div>
+            <div>
+                Password: <input type="password" name="password" value="" />
+            </div>
+            <div>
+                <button class="custom-button" type="submit">Log in</button>
+            </div>
+        </form>
+    <p th:text="${message}"></p>
+    </body>
+</html>
