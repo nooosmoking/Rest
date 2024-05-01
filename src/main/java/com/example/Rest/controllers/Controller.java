@@ -1,23 +1,37 @@
 package com.example.Rest.controllers;
 
-
-import lombok.AllArgsConstructor;
-import org.springframework.ui.Model;
+import com.example.Rest.models.Payment;
+import com.example.Rest.services.PaymentService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.List;
 
 @RestController
 public class Controller {
+    private final PaymentService paymentService;
+
+    public Controller(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+
     @GetMapping("/payments")
-    public String loginGet(){
-        return "login.html";
+    public List<Payment> paymentsGet(){
+        return paymentService.getPayments();
     }
 
-    @PostMapping("/login")
-    public String loginPost(@RequestParam String username, @RequestParam String password, Model page){
-
+    @GetMapping("/payment")
+    public Payment paymentsByIdGet(@RequestParam int id){
+        return paymentService.findById(id);
     }
+
+    @GetMapping("/balance")
+    public int balanceGet(){
+        return paymentService.getBalance();
+    }
+
+//    @PostMapping("/login")
+//    public String loginPost(@RequestParam String username, @RequestParam String password, Model page){
+//
+//    }
 }
