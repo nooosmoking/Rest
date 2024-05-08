@@ -38,4 +38,18 @@ public class PaymentService {
         balance -= payment.getAmount();
         payments.add(payment);
     }
+
+    public void changePayment(Payment payment) {
+        try {
+            Payment oldPayment = payments
+                    .stream()
+                    .filter(p -> p.getId() == payment.getId())
+                    .findFirst()
+                    .get();
+            oldPayment.setAmount(payment.getAmount());
+            oldPayment.setReceiver(payment.getReceiver());
+        } catch (NoSuchElementException ex) {
+            throw new NoSuchAccountException("There`s no account with id " + payment.getId());
+        }
+    }
 }

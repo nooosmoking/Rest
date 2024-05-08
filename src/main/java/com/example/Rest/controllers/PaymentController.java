@@ -37,4 +37,10 @@ public class PaymentController {
         paymentService.makePayment(payment);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(payment);
     }
+
+    @PutMapping("/payments")
+    public ResponseEntity<Payment> changePayment(@RequestBody Payment payment){
+        paymentService.changePayment(payment);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(payment);
+    }
 }
