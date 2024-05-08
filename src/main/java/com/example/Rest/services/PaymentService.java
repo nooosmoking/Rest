@@ -52,4 +52,10 @@ public class PaymentService {
             throw new NoSuchAccountException("There`s no account with id " + payment.getId());
         }
     }
+
+    public void deletePayment(int id) {
+        if (!payments.removeIf(p -> p.getId() == id)) {
+            throw new NoSuchAccountException("There`s no account with id " + id);
+        }
+    }
 }
