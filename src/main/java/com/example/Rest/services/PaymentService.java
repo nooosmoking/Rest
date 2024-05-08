@@ -1,5 +1,6 @@
 package com.example.Rest.services;
 
+import com.example.Rest.exceptions.NoSuchAccountException;
 import com.example.Rest.exceptions.NotEnoughMoneyException;
 import com.example.Rest.models.Payment;
 import lombok.Data;
@@ -23,11 +24,15 @@ public class PaymentService {
     }
 
     public Payment findById(int id) throws NoSuchElementException {
-        return payments.stream().filter(p -> p.getId()==id).findFirst().get();
+        try {
+            return payments.stream().filter(p -> p.getId() == id).findFirst().get();
+        } catch (NoSuchElementException ex) {
+            throw new NoSuchAccountException("There`s no account with id " + id);
+        }
     }
 
-    public void makePayment(Payment payment) throws NotEnoughMoneyException{
-        if (balance< payment.getAmount()){
+    public void makePayment(Payment payment) throws NotEnoughMoneyException {
+        if (balance < payment.getAmount()) {
             throw new NotEnoughMoneyException("Not enough money to make transaction (balance: " + balance + ")");
         }
         balance -= payment.getAmount();
